@@ -1,0 +1,51 @@
+Crear una Base de datos
+use dbBiblioteca 
+
+Mostrar las base de datos activas
+show dbs
+
+Eliminar base de datos
+db.dropDatabase()
+
+Crear una colección implicita (crea la colección e inserta el documento)
+db.libro.insert({"Id":1,"Titulo":"Introducción a Java","Descripcion":"Descripción General del Libro","ISBN":"978-987-25620-2-1","Autor":"Juan Perez","Anio":2005,"CantidadEnInventario":2,"Etiquetas":["Programación","Algoritmos"]})
+
+Crear una colección de manera explicita
+db.createCollection("usuario")
+
+Visualizar las colecciones creadas
+show collections
+
+Eliminar colección
+db.usuario.drop()
+
+Insertar documentos
+
+db.libro.insert({"Id":2,"Titulo":"Ingeniería de Software II","Descripcion":"Descripción General del Libro","ISBN":"123-456-1111-9-8","Autor":"María Reyes","Anio":2005,"CantidadEnInventario":5,"Etiquetas":["Software","Diseño"]})
+db.libro.insert({"Id":3,"Titulo":"Diseño de Base de Datos en SQL","Descripcion":"Descripción General del Libro","ISBN":"886-321-989-1-1","Autor":"Carmen Estrada","Anio":2020,"CantidadEnInventario":2,"Etiquetas":["Base de Datos","SQL"]})
+db.libro.insert({"Id":4,"Titulo":"Redes de Computadoras","Descripcion":"Descripción General del Libro","ISBN":"568-26-888-1-1","Autor":"Carlos Martínez","Anio":2004,"CantidadEnInventario":8,"Etiquetas":["Redes","Comunicación"]})
+db.libro.insert({"Id":9,"Titulo":"Matemáticas para tontos","Descripcion":"Descripción General del Libro","ISBN":"888-26-666-1-1","Autor":"Camilo Saavedra","Anio":2004,"CantidadEnInventario":8,"CantidadEnPrestamo":2,"Etiquetas":["Redes","Comunicación"]})
+
+Mustra todos los registro de libro
+db.libro.find()
+
+Mustra los registros con formato ordenado
+db.libro.find().pretty()
+
+Mostrar todos los regitros del libro pero unicamente el campo Titulo
+db.libro.find({},{Titulo:1,_id:0})
+
+Actualizar Documentos
+db.libro.update({"Id":3},{$set:{"CantidadEnInventario":2}})
+
+Eliminar un Documento
+db.libro.remove({"Id":1})
+db.libro.deleteOne({"Id":3})
+
+Consultas complejas
+mostrar libros que su año de publicación es menor que 2008 ($lt)
+db.libro.find({"Anio":{$lt:2008}})
+
+AND
+db.libro.find({"Id":{$lt:2008},"CantidadEnInventario":{$lt:5}})
+
